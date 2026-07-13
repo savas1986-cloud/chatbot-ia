@@ -1,0 +1,28 @@
+# 🤖 ChatBot com IA
+
+Chatbot conversacional feito em Python, com interface web e memória de contexto.
+
+**🔗 Acesse:** https://chatbot-patygomes.streamlit.app
+
+## Tecnologias
+- **Python**
+- **Streamlit** — interface web e gerenciamento de estado
+- **Groq API** (modelo Llama 3.3 70B) — geração das respostas
+
+## Funcionalidades
+- Conversa com histórico: a IA lembra do que foi dito antes
+- Botão para limpar a conversa
+- Chave de API protegida via `st.secrets`
+
+## Como rodar localmente
+```bash
+pip install -r requirements.txt
+streamlit run main2.py
+```
+Crie um arquivo `.streamlit/secrets.toml` com sua chave:
+```toml
+GROQ_API_KEY = "sua_chave_aqui"
+```
+
+---
+Projeto desenvolvido como estudo de Python + IA.
