@@ -11,6 +11,11 @@
 
 import streamlit as st
 from openai import OpenAI
+st.set_page_config(
+    page_title="ChatBot da Paty",
+    page_icon="🤖",
+    layout="centered"      # ou "wide" pra ocupar a tela toda
+)
 
 modelo_ia = OpenAI(api_key=st.secrets["GROQ_API_KEY"],base_url="https://api.groq.com/openai/v1") # criar uma instancia da IA
 
