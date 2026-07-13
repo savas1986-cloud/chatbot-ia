@@ -48,10 +48,11 @@ if texto_usuario:
     st.session_state.lista_mensagens.append({"role": "user", "content": texto_usuario})
 
 with st.spinner("Pensando..."):
-    resposta_ia = modelo_ia.chat.completions.create(
-        messages=st.session_state.lista_mensagens,
-        model="llama-3.3-70b-versatile"
-    )
+        resposta_ia = modelo_ia.chat.completions.create(
+            messages=st.session_state.lista_mensagens,
+            model="llama-3.3-70b-versatile"
+        )
+
     texto_resposta_ia = resposta_ia.choices[0].message.content
 
     # ── item 4: AVATAR da IA ──────────────────────────
