@@ -47,7 +47,7 @@ if texto_usuario:
     st.chat_message("user", avatar="👩‍💻").write(texto_usuario)
     st.session_state.lista_mensagens.append({"role": "user", "content": texto_usuario})
 
-    with st.spinner("Pensando..."):
+with st.spinner("Pensando..."):
     resposta_ia = modelo_ia.chat.completions.create(
         messages=st.session_state.lista_mensagens,
         model="llama-3.3-70b-versatile"
