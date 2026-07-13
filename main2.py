@@ -19,8 +19,9 @@ st.set_page_config(
 
 modelo_ia = OpenAI(api_key=st.secrets["GROQ_API_KEY"],base_url="https://api.groq.com/openai/v1") # criar uma instancia da IA
 
-st.write("### ChatBot com IA") # markdown
-st.write("Primeiro ChatBot da Paty") # markdown
+st.title("🤖 ChatBot da Paty")
+st.caption("Converse com a IA — powered by Groq")
+st.divider()
 
 if not "lista_mensagens" in st.session_state:
     st.session_state.lista_mensagens = []
