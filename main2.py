@@ -23,6 +23,16 @@ st.title("🤖 ChatBot da Paty")
 st.caption("Converse com a IA — powered by Groq")
 st.divider()
 
+st.chat_message("assistant", avatar="🤖").write(texto_resposta_ia)
+st.chat_message("user", avatar="👩‍💻").write(texto_usuario)
+
+with st.sidebar:
+    st.header("Sobre")
+    st.write("Chatbot feito em Python com Streamlit + Groq")
+    if st.button("🗑️ Limpar conversa"):
+        st.session_state.lista_mensagens = []
+        st.rerun()
+
 if not "lista_mensagens" in st.session_state:
     st.session_state.lista_mensagens = []
 
