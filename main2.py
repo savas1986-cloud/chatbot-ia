@@ -43,11 +43,10 @@ for mensagem in st.session_state.lista_mensagens:
     st.chat_message(mensagem["role"], avatar=avatar).write(mensagem["content"])
 
 if texto_usuario:
-    # ── item 4: AVATAR do usuário ─────────────────────
     st.chat_message("user", avatar="👩‍💻").write(texto_usuario)
     st.session_state.lista_mensagens.append({"role": "user", "content": texto_usuario})
 
-with st.spinner("Pensando..."):
+    with st.spinner("Pensando..."):
         resposta_ia = modelo_ia.chat.completions.create(
             messages=st.session_state.lista_mensagens,
             model="llama-3.3-70b-versatile"
@@ -55,6 +54,5 @@ with st.spinner("Pensando..."):
 
     texto_resposta_ia = resposta_ia.choices[0].message.content
 
-    # ── item 4: AVATAR da IA ──────────────────────────
     st.chat_message("assistant", avatar="🤖").write(texto_resposta_ia)
     st.session_state.lista_mensagens.append({"role": "assistant", "content": texto_resposta_ia})
