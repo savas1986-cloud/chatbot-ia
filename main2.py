@@ -11,13 +11,14 @@
 
 import streamlit as st
 from openai import OpenAI
-st.set_page_config(
-    page_title="ChatBot da Paty",
-    page_icon="🤖",
-    layout="centered"      # ou "wide" pra ocupar a tela toda
-)
 
-modelo_ia = OpenAI(api_key=st.secrets["GROQ_API_KEY"],base_url="https://api.groq.com/openai/v1") # criar uma instancia da IA
+# ── configuração (sempre o 1º comando st) ─────────────
+st.set_page_config(page_title="ChatBot da Paty", page_icon="🤖")
+
+modelo_ia = OpenAI(
+    api_key=st.secrets["GROQ_API_KEY"],
+    base_url="https://api.groq.com/openai/v1"
+)
 
 # ── item 5: SIDEBAR ───────────────────────────────────
 with st.sidebar:                          # ← antes do conteúdo principal
@@ -27,18 +28,18 @@ with st.sidebar:                          # ← antes do conteúdo principal
         st.session_state.lista_mensagens = []
         st.rerun()
 
+# ── título ────────────────────────────────────────────
 st.title("🤖 ChatBot da Paty")
-st.caption("Converse com a IA — powered by Groq")
 st.divider()
-
 
 if not "lista_mensagens" in st.session_state:
     st.session_state.lista_mensagens = []
 
-texto_usuario =st.chat_input("Escreva sua mensagem aqui") # input do chat
+texto_usuario = st.chat_input("Escreva sua mensagem aqui")
 
+# ── item 4: AVATARES (histórico) ──────────────────────
 for mensagem in st.session_state.lista_mensagens:
-  avatar = "🤖" if mensagem["role"] == "assistant" else "👩‍💻"
+    avatar = "🤖" if mensagem["role"] == "assistant" else "👩‍💻"
     st.chat_message(mensagem["role"], avatar=avatar).write(mensagem["content"])
 
 if texto_usuario:
@@ -54,4 +55,4 @@ if texto_usuario:
 
     # ── item 4: AVATAR da IA ──────────────────────────
     st.chat_message("assistant", avatar="🤖").write(texto_resposta_ia)
-    st.session_state.lista_mensagens.append({"role": "assistant", "content": texto_resposta_ia}
+    st.session_state.lista_mensagens.append({"role": "assistant", "content": texto_resposta_ia})
