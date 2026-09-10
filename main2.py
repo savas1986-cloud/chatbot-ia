@@ -47,12 +47,15 @@ if texto_usuario:
     st.session_state.lista_mensagens.append({"role": "user", "content": texto_usuario})
 
     with st.spinner("Pensando..."):
-        resposta_ia = modelo_ia.chat.completions.create(
-            messages=st.session_state.lista_mensagens,
-            model="openai/gpt-oss-120b"
-        )
-
-    texto_resposta_ia = resposta_ia.choices[0].message.content
+        try:
+            resposta_ia = modelo_ia.chat.completions.create(
+                messages=st.session_state.lista_mensagens,
+                model="openai/gpt-oss-20b"
+            )
+            texto_resposta_ia = resposta_ia.choices[0].message.content
+        except Exception as e:
+            st.error(f"Erro real: {e}")   # ← mostra a mensagem verdadeira na tela
+            st.stop()
 
     st.chat_message("assistant", avatar="🤖").write(texto_resposta_ia)
     st.session_state.lista_mensagens.append({"role": "assistant", "content": texto_resposta_ia})
