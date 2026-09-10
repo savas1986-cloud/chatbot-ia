@@ -49,7 +49,7 @@ if texto_usuario:
     with st.spinner("Pensando..."):
         resposta_ia = modelo_ia.chat.completions.create(
             messages=st.session_state.lista_mensagens,
-            model="llama-3.3-70b-versatile"
+            model="openai/gpt-oss-120b"
         )
 
     texto_resposta_ia = resposta_ia.choices[0].message.content
